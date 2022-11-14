@@ -22,6 +22,6 @@ public class EventRouter extends EventConsumer {
     protected void processEvent(Event event) {
         EventQueue destination = routing.getRoute(event.getTopic());
         destination.addEvent(event);
-        System.out.println("Routed");
+        System.out.println("Routed intended for " + event.getEventTimeMillis() + " to " + destination.getName() + " at " + System.currentTimeMillis());
     }
 }

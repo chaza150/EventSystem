@@ -17,6 +17,10 @@ public class EventQueue {
         this.name = name;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     public boolean addSubscriber(ISubscriber subscriber){
         return notificationSubscribers.add(subscriber);
     }

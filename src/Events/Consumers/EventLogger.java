@@ -7,6 +7,6 @@ public class EventLogger extends EventConsumer {
 
     @Override
     protected void processEvent(Event e) {
-        System.out.println(e.getEventTimeMillis());
+        System.out.println(this.toString() + ": " + e.getEventTimeMillis());
     }
 }

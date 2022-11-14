@@ -15,6 +15,6 @@ public class LoggerSubscriber extends EventSubscriber {
 
     @Override
     protected void processEvent(Event event) {
-        System.out.println("Logged: (Topic: " + event.getTopic() + ", Event Time: " + event.getEventTimeMillis() + ", Processed Time: " + System.currentTimeMillis() + ")");
+        System.out.println(this.toString() + " Logged: (Topic: " + event.getTopic() + ", Event Time: " + event.getEventTimeMillis() + ", Processed Time: " + System.currentTimeMillis() + ")");
     }
 }

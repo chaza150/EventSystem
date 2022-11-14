@@ -9,8 +9,8 @@ public class Main {
 
     public static void main(String args[]) {
         EventQueue queue = new EventQueue("Original");
-        EventQueue testDestinationQueue = new EventQueue("Destination 1");
-        EventQueue testDestinationQueue2 = new EventQueue("Destination 2");
+        EventQueue testDestinationQueue = new EventQueue("Queue 1");
+        EventQueue testDestinationQueue2 = new EventQueue("Queue 2");
 
         LoggerSubscriber loggerSubscriber = new LoggerSubscriber(true);
         testDestinationQueue.addSubscriber(loggerSubscriber);
@@ -23,7 +23,7 @@ public class Main {
         EventRouting routing = new EventRouting();
         routing.addDestinationRoute(TopicEnum.DEFAULT, testDestinationQueue);
         routing.addDestinationRoute(TopicEnum.EXAMPLE_TOPIC1, testDestinationQueue2);
-        EventRouter eventRouter = new EventRouter(routing, true);
+        EventRouter eventRouter = new EventRouter(routing, false);
         eventRouter.setSourceQueue(queue);
         eventRouter.start();
         queue.addSubscriber(eventRouter);

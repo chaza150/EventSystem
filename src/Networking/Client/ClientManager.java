@@ -39,11 +39,11 @@ public class ClientManager{
             socket = new Socket(hostName, port);
             reader = new SocketReader(socket);
             writer = new SocketWriter(socket);
-            writeMessage("Joined\n---END MESSAGE---\n");
+            writeMessage("Client joined Server");
         }
     }
 
     private boolean writeMessage(String message){
-        return writer.addMessage(message);
+        return writer.addMessage(message + "\n---END MESSAGE---\n");
     }
 }

@@ -12,7 +12,7 @@ public class ServerManager implements Runnable{
 
     ArrayList<ClientConnection> clientConnections = new ArrayList<>();
     ServerSocket serverSocket = null;
-    private int port = 30300;
+    private int port;
 
     private Thread activeThread;
     private boolean enabled = false;
@@ -49,12 +49,12 @@ public class ServerManager implements Runnable{
         ClientConnection clientConnection = new ClientConnection(socket);
         clientConnections.add(clientConnection);
         clientConnection.start();
-        clientConnection.writer.addMessage("Connected\n---END MESSAGE---\n");
+        clientConnection.writeMessage("Connected to Server");
     }
 
     private void broadcastMessage(String message){
         for (ClientConnection clientConnection: clientConnections){
-            clientConnection.writer.addMessage(message);
+            clientConnection.writeMessage(message);
         }
     }
 
@@ -71,9 +71,11 @@ public class ServerManager implements Runnable{
 
         public void start(){
             this.reader.start();
-            System.out.println("Started reader");
             this.writer.start();
-            System.out.println("Started writer");
+        }
+
+        public boolean writeMessage(String message){
+            return writer.addMessage(message + "\n---END MESSAGE---\n");
         }
     }
 }
